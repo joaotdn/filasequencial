@@ -51,8 +51,10 @@ public class FilaEncadeada {
 	}
 	
 	void esvaziar() {
-		if(this.isVazia())
+		if(this.isVazia()) {
 			System.out.println("A fila j‡ est‡ vazia");
+			return;
+		}
 		
 		while(this.inicio != null) {
 			this.inicio = this.inicio.prox;

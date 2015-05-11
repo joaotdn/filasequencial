@@ -1,6 +1,6 @@
-package fila.sequencial.aula;
+package filas.teste;
 
-public class FilaEncadeada {
+public class Encadeada {
 	No inicio;
 	No fim;
 	int totalElementos;
@@ -10,10 +10,8 @@ public class FilaEncadeada {
 	}
 	
 	boolean inserir(String valor) {
-		if(valor == null)
-			return false;
-		
 		No novo = new No();
+		
 		if(this.isVazia())
 			this.inicio = novo;
 		else
@@ -28,19 +26,22 @@ public class FilaEncadeada {
 	String remover() {
 		if(this.isVazia())
 			return null;
+		
 		if(this.inicio.equals(this.fim))
 			this.fim = null;
-		String n = this.inicio.dado;
+		
+		String valor = this.inicio.dado;
 		this.inicio = this.inicio.prox;
-		return n;
+		
+		this.totalElementos--;
+		return valor;
 	}
 	
 	void exibir() {
-		if(this.totalElementos == 0) {
+		if(this.isVazia()) {
 			System.out.println("Fila vazia");
 			return;
 		}
-		
 		No aux = this.inicio;
 		int cont = 0;
 		while(cont < this.totalElementos && aux != null) {
@@ -50,36 +51,35 @@ public class FilaEncadeada {
 		}
 	}
 	
-	void esvaziar() {
-		if(this.isVazia())
-			System.out.println("A fila j‡ est‡ vazia");
+	void esvasiar() {
+		if(this.isVazia()) {
+			System.out.println("Fila ja vazia");
+			return;
+		}
 		
 		while(this.inicio != null) {
-			this.inicio = this.inicio.prox;
+			this.inicio = inicio.prox;
 			this.totalElementos--;
 		}
 		
-		this.totalElementos--;
-		System.out.println("A fila foi esvaziada");
+		System.out.println("Fila esvaziada");
 	}
 	
 	public static void main(String[] args) {
-		FilaEncadeada fila = new FilaEncadeada();
-		fila.inserir("Joao");
-		fila.inserir("Jose");
-		fila.inserir("Maria");
+		Encadeada fila = new Encadeada();
+		fila.inserir("joao");
+		fila.inserir("jose");
+		fila.inserir("maria");
+		fila.inserir("pedro");
 		
 		fila.exibir();
-
-		System.out.println("-------");
-		System.out.println(fila.remover() + " saiu da fila");
+		
+		fila.remover();
+		System.out.println("----------");
 		fila.exibir();
 		
-		System.out.println("-------");
-		fila.exibir();
-		
-		System.out.println("-------");
-		fila.esvaziar();
+		System.out.println("----------");
+		fila.esvasiar();
 		fila.exibir();
 	}
 }
